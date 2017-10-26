@@ -1,0 +1,6 @@
+framework module Pods_ReadClient {
+  umbrella header "Pods-ReadClient-umbrella.h"
+
+  export *
+  module * { export * }
+}
