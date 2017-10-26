@@ -12,6 +12,8 @@
 		B1774A711FA1BE4F002B5EB8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1774A6F1FA1BE4F002B5EB8 /* LaunchScreen.storyboard */; };
 		B1774A791FA1BF39002B5EB8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1774A781FA1BF39002B5EB8 /* MainViewController.swift */; };
 		B1774A7B1FA1BF3F002B5EB8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1774A7A1FA1BF3F002B5EB8 /* DetailViewController.swift */; };
+		B1774A7D1FA1CF88002B5EB8 /* MainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1774A7C1FA1CF88002B5EB8 /* MainTableViewCell.swift */; };
+		B1774A7F1FA1D03C002B5EB8 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1774A7E1FA1D03C002B5EB8 /* Constant.swift */; };
 		D733FC726DF8A41BA722DB3A /* Pods_ReadClient.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68F99B3E422F4388CAFE68DF /* Pods_ReadClient.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +28,8 @@
 		B1774A721FA1BE4F002B5EB8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1774A781FA1BF39002B5EB8 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		B1774A7A1FA1BF3F002B5EB8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B1774A7C1FA1CF88002B5EB8 /* MainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTableViewCell.swift; sourceTree = "<group>"; };
+		B1774A7E1FA1D03C002B5EB8 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,8 @@
 				B1774A721FA1BE4F002B5EB8 /* Info.plist */,
 				B1774A781FA1BF39002B5EB8 /* MainViewController.swift */,
 				B1774A7A1FA1BF3F002B5EB8 /* DetailViewController.swift */,
+				B1774A7C1FA1CF88002B5EB8 /* MainTableViewCell.swift */,
+				B1774A7E1FA1D03C002B5EB8 /* Constant.swift */,
 			);
 			path = ReadClient;
 			sourceTree = "<group>";
@@ -226,6 +232,8 @@
 			files = (
 				B1774A7B1FA1BF3F002B5EB8 /* DetailViewController.swift in Sources */,
 				B1774A671FA1BE4F002B5EB8 /* AppDelegate.swift in Sources */,
+				B1774A7F1FA1D03C002B5EB8 /* Constant.swift in Sources */,
+				B1774A7D1FA1CF88002B5EB8 /* MainTableViewCell.swift in Sources */,
 				B1774A791FA1BF39002B5EB8 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
