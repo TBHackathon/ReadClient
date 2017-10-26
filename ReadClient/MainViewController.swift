@@ -32,6 +32,9 @@ class MainViewController: UIViewController {
     func setupTableView() {
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        
+        self.tableView.register(MainTableViewCell.self, forCellReuseIdentifier: Constant.MainCellReuseIdentifier)
+        
         self.view.addSubview(self.tableView)
     }
 }
@@ -47,7 +50,14 @@ extension MainViewController {
 
 extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        
+        var mainCell = tableView.dequeueReusableCell(withIdentifier: Constant.MainCellReuseIdentifier)
+        
+        if (mainCell == nil) {
+            mainCell = MainTableViewCell(style: .default, reuseIdentifier: Constant.MainCellReuseIdentifier)
+        }
+        
+        return mainCell!
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -55,10 +65,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return Constant.MainCellHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.push()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if cell is MainTableViewCell {
+            let mainCell = cell as! MainTableViewCell
+            
+            mainCell.bindData(title: "Hehehehe", bgImageURLString: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2968594711,2709755318&fm=27&gp=0.jpg")
+        }
+        
     }
 }

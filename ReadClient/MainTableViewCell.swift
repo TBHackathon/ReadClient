@@ -7,21 +7,36 @@
 //
 
 import UIKit
+import Kingfisher
 
 class MainTableViewCell: UITableViewCell {
+    
+    var titleLabel = UILabel()
+    var bgImageView = UIImageView()
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.setupCellUI()
     }
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     func setupCellUI() {
-        let titleLabel = UILabel(frame: CGRect(x: Constant.ScreenPadding.left, y: 0, width: Constant.ScreenWidth - Constant.ScreenPadding.left + Constant.ScreenPadding.right, height: 40))
-        self.contentView.addSubview(titleLabel)
+        self.titleLabel = UILabel(frame: CGRect(x: Constant.ScreenPadding.left, y: 0, width: Constant.ScreenWidth - Constant.ScreenPadding.left + Constant.ScreenPadding.right, height: 40))
+        self.contentView.addSubview(self.titleLabel)
         
-        let bgImageView = UIImageView(frame: self.bounds)
-        self.contentView.addSubview(bgImageView)
+        self.bgImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: Constant.MainCellHeight))
+        self.contentView.addSubview(self.bgImageView)
+    }
+    
+    func bindData(title: String, bgImageURLString: String) {
+        self.titleLabel.text = title
+        self.bgImageView.kf.setImage(with: URL(string: bgImageURLString), placeholder: UIImage(named: "placeholder"), options: nil, progressBlock: nil) { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
+            
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

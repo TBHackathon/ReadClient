@@ -10,6 +10,18 @@ import Foundation
 import UIKit
 
 struct Constant {
+    static var MainCellHeight: CGFloat {
+        get {
+            return 88.0
+        }
+    }
+    
+    static var MainCellReuseIdentifier: String {
+        get {
+            return "MainCellReuseIdentifier"
+        }
+    }
+    
     static var ScreenWidth: CGFloat {
         get {
             return UIScreen.main.bounds.size.width
