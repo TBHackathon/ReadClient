@@ -13,6 +13,7 @@ class MainTableViewCell: UITableViewCell {
     
     var titleLabel = UILabel()
     var bgImageView = UIImageView()
+    var bgMaskView = UIView()
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,11 +26,16 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func setupCellUI() {
-        self.titleLabel = UILabel(frame: CGRect(x: Constant.ScreenPadding.left, y: 0, width: Constant.ScreenWidth - Constant.ScreenPadding.left + Constant.ScreenPadding.right, height: 40))
-        self.contentView.addSubview(self.titleLabel)
-        
         self.bgImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: Constant.MainCellHeight))
         self.contentView.addSubview(self.bgImageView)
+        
+        self.bgMaskView = UIView(frame: bgImageView.bounds)
+        self.bgMaskView.backgroundColor = UIColor(displayP3Red: 0.1, green: 0.1, blue: 0.1, alpha: 0.5)
+        self.contentView.addSubview(self.bgMaskView)
+        
+        self.titleLabel = UILabel(frame: CGRect(x: Constant.ScreenPadding.left, y: Constant.MainCellHeight - 40 - Constant.ScreenPadding.bottom, width: Constant.ScreenWidth - Constant.ScreenPadding.left + Constant.ScreenPadding.right, height: 40))
+        self.titleLabel.textColor = UIColor.white
+        self.contentView.addSubview(self.titleLabel)
     }
     
     func bindData(title: String, bgImageURLString: String) {
