@@ -36,7 +36,11 @@ class MainViewController: UIViewController {
         
         let rightItem = UIBarButtonItem(image: UIImage(named: "usericon64"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(goToUserCenter))
         rightItem.tintColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = rightItem
+        
+        let rightItem1 = UIBarButtonItem(image: UIImage(named: "usericon64"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(goToUserCenter1))
+        rightItem1.tintColor = UIColor.white
+        
+        self.navigationItem.rightBarButtonItems = [rightItem, rightItem1]
     }
     
     func setupTableView() {
@@ -49,7 +53,15 @@ class MainViewController: UIViewController {
     }
     
     func goToUserCenter() {
-        
+        Networking.requestDetail(newsID: 0) {
+            print("requestDetail")
+        }
+    }
+    
+    func goToUserCenter1() {
+        Networking.requestNewsList(newsID: 0, count: 2) {
+            print("requestNewsList")
+        }
     }
 }
 

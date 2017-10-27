@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 
 struct Constant {
+    
+    static var BaseURLString: String {
+        get {
+            return "http://172.24.160.164:8000"
+        }
+    }
+    
     static var ReadClientReloadTableViewNotification: String {
         get {
             return "ReadClientReloadTableViewNotification"
