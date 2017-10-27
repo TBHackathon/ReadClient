@@ -19,38 +19,24 @@ class Networking: NSObject {
 //    var newsID : Int = 0 // id from:0
 //    var count : Int = 1 // num
     
-    class func requestNewsList(newsID: Int = 0, count: Int = 1, completionBlock: () -> Void) {
+    class func requestNewsList(newsID: Int = 0, count: Int = 1, completionBlock: @escaping (Dictionary<String, AnyObject>) -> Void) {
         let url = URL(string: Constant.BaseURLString + "?qt=2&id=" + String(newsID) + "&num=" + String(count))
         
         Alamofire.request(url!).responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
-            
             if let json = response.result.value {
-                print("JSON: \(json)") // serialized json response
-            }
-            
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)") // original server data as UTF8 string
+                let dict = json as! Dictionary<String, AnyObject>
+                completionBlock(dict)
             }
         }
     }
     
-    class func requestDetail(newsID: Int = 0, completionBlock: () -> Void) {
+    class func requestDetail(newsID: Int = 0, completionBlock: @escaping (Dictionary<String, AnyObject>) -> Void) {
         let url = URL(string: Constant.BaseURLString + "?qt=1&id=" + String(newsID) + "&num=1")
         
         Alamofire.request(url!).responseJSON { response in
-            print("Request: \(String(describing: response.request))")   // original url request
-            print("Response: \(String(describing: response.response))") // http url response
-            print("Result: \(response.result)")                         // response serialization result
-            
             if let json = response.result.value {
-                print("JSON: \(json)") // serialized json response
-            }
-            
-            if let data = response.data, let utf8Text = String(data: data, encoding: .utf8) {
-                print("Data: \(utf8Text)") // original server data as UTF8 string
+                let dict = json as! Dictionary<String, AnyObject>
+                completionBlock(dict)
             }
         }
     }

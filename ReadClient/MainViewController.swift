@@ -12,6 +12,8 @@ import TransitionAnimation
 
 class MainViewController: UIViewController {
     
+    var newsList = Array<Dictionary<String, AnyObject>>()
+    
     let tableView = UITableView(frame: UIScreen.main.bounds, style: .plain)
 
     override func viewDidLoad() {
@@ -22,6 +24,8 @@ class MainViewController: UIViewController {
         self.setupNavigationBar()
         
         self.setupTableView()
+        
+        self.requestListData()
         
         // Do any additional setup after loading the view.
     }
@@ -53,17 +57,33 @@ class MainViewController: UIViewController {
     }
     
     func goToUserCenter() {
-        Networking.requestDetail(newsID: 0) {
-            print("requestDetail")
+//        Networking.requestDetail(newsID: 0) {
+//            print("requestDetail")
+//        }
+        Networking.requestDetail(newsID: 0) { (dict: Dictionary<String, AnyObject>) in
+            print("\(dict)")
         }
     }
     
     func goToUserCenter1() {
-        Networking.requestNewsList(newsID: 0, count: 2) {
-            print("requestNewsList")
+        Networking.requestNewsList(newsID: 0, count: 10) { (dict: Dictionary<String, AnyObject>) in
+
+            for key in dict.keys {
+                self.newsList.append(dict[key] as! Dictionary<String, AnyObject>)
+            }
+            self.tableView.reloadData()
         }
     }
-}
+
+    func requestListData() {
+        Networking.requestNewsList(newsID: 0, count: 10) { (dict: Dictionary<String, AnyObject>) in
+            
+            for key in dict.keys {
+                self.newsList.append(dict[key] as! Dictionary<String, AnyObject>)
+            }
+            self.tableView.reloadData()
+        }
+    }}
 
 extension MainViewController {
     func reloadTableView() {
@@ -96,7 +116,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return self.newsList.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -113,7 +133,9 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         if cell is MainTableViewCell {
             let mainCell = cell as! MainTableViewCell
             
-            mainCell.bindData(title: "Hehehehe", bgImageURLString: "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2968594711,2709755318&fm=27&gp=0.jpg")
+            let obj = self.newsList[indexPath.row]
+            
+            mainCell.bindData(title: obj["title"] as! String, bgImageURLString: obj["picture"] as! String)
         }
         
     }
