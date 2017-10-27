@@ -36,6 +36,7 @@ class MainTableViewCell: UITableViewCell {
         self.contentView.addSubview(self.bgMaskView)
         
         self.titleLabel = UILabel(frame: CGRect(x: Constant.ScreenPadding.left, y: Constant.MainCellHeight - 40 - Constant.ScreenPadding.bottom, width: Constant.ScreenWidth - Constant.ScreenPadding.left + Constant.ScreenPadding.right, height: 40))
+        self.titleLabel.font = UIFont.systemFont(ofSize: 17.0)
         self.titleLabel.textColor = UIColor.white
         self.contentView.addSubview(self.titleLabel)
     }
