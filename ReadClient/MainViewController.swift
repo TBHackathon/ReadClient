@@ -19,18 +19,24 @@ class MainViewController: UIViewController {
         
         self.view.backgroundColor = UIColor.white
         
+        self.setupNavigationBar()
+        
         self.setupTableView()
         
         // Do any additional setup after loading the view.
     }
     
-    deinit {
-        self.unregisterForNotification()
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setupNavigationBar() {
+        self.navigationController?.navigationBar.barStyle = .blackTranslucent
+        
+        let rightItem = UIBarButtonItem(image: UIImage(named: "usericon64"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(goToUserCenter))
+        rightItem.tintColor = UIColor.white
+        self.navigationItem.rightBarButtonItem = rightItem
     }
     
     func setupTableView() {
@@ -40,6 +46,10 @@ class MainViewController: UIViewController {
         self.tableView.register(MainTableViewCell.self, forCellReuseIdentifier: Constant.MainCellReuseIdentifier)
         
         self.view.addSubview(self.tableView)
+    }
+    
+    func goToUserCenter() {
+        
     }
 }
 
