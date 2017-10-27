@@ -36,7 +36,7 @@ struct Constant {
     
     static var ScreenHeight: CGFloat {
         get {
-            return UIScreen.main.bounds.size.width
+            return UIScreen.main.bounds.size.height
         }
     }
     
