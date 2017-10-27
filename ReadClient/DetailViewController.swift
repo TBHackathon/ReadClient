@@ -31,12 +31,15 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.hideOrShowHeaderView(isHidden: false)
+    }
+    
     func setupNavigationBar() {
         let leftItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.plain, target: self, action: #selector(pop))
         self.navigationItem.leftBarButtonItem = leftItem
-        
-        let rightItem = UIBarButtonItem(title: "测试", style: UIBarButtonItemStyle.plain, target: self, action: #selector(showAllSubView))
-        self.navigationItem.rightBarButtonItem = rightItem
     }
     
     func setupScrollView() {
@@ -50,18 +53,16 @@ class DetailViewController: UIViewController {
 
 extension DetailViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        for replicantView in self.view.subviews {
-            if replicantView.frame.height == 300 {
-                replicantView.isHidden = true
-            }
-        }
+        self.hideOrShowHeaderView(isHidden: true)
     }
     
-    func showAllSubView() {
+    func hideOrShowHeaderView(isHidden: Bool) {
         print(self.view.subviews.debugDescription)
+        let replicantClass = NSClassFromString("_UIReplicantView") as! NSObject.Type
+        
         for replicantView in self.view.subviews {
-            if replicantView.frame.height == 300 {
-                replicantView.isHidden = true
+            if replicantView.isKind(of: replicantClass) {
+                replicantView.isHidden = isHidden
             }
         }
     }
