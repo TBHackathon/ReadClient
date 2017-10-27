@@ -44,14 +44,6 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-    func registerForNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name.init(Constant.ReadClientReloadTableViewNotification), object: nil)
-    }
-    
-    func unregisterForNotification() {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     func reloadTableView() {
         self.tableView.reloadData()
     }

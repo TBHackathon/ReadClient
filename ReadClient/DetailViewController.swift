@@ -30,9 +30,6 @@ class DetailViewController: UIViewController {
     }
     
     func setupNavigationBar() {
-        
-//        iewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavBack"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
-
         let leftItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.plain, target: self, action: #selector(pop))
         self.navigationItem.leftBarButtonItem = leftItem
     }
@@ -42,7 +39,7 @@ extension DetailViewController: NavgationTransitionable {
     
     func pop() {
         self.navigationController?.tr_popViewController({
-//            NotificationCenter.default.post(name: NSNotification.Name.init(Constant.ReadClientReloadTableViewNotification), object: nil)
+            
         })
     }
 }
