@@ -26,7 +26,10 @@ class MainTableViewCell: UITableViewCell {
     }
     
     func setupCellUI() {
+        self.contentView.clipsToBounds = true
+        
         self.bgImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: Constant.MainCellHeight))
+        self.bgImageView.contentMode = .center
         self.contentView.addSubview(self.bgImageView)
         
         self.bgMaskView = UIView(frame: bgImageView.bounds)

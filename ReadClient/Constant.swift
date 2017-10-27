@@ -25,7 +25,7 @@ struct Constant {
     
     static var MainCellHeight: CGFloat {
         get {
-            return 88.0
+            return 148.0
         }
     }
     
