@@ -17,6 +17,8 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupNavigationBar()
+        
         self.view.backgroundColor = UIColor.red
 
         // Do any additional setup after loading the view.
@@ -27,13 +29,20 @@ class DetailViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func setupNavigationBar() {
+        
+//        iewController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"NavBack"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+
+        let leftItem = UIBarButtonItem(title: "返回", style: UIBarButtonItemStyle.plain, target: self, action: #selector(pop))
+        self.navigationItem.leftBarButtonItem = leftItem
+    }
 }
 
 extension DetailViewController: NavgationTransitionable {
     
     func pop() {
         self.navigationController?.tr_popViewController({
-            print("pop finish")
+//            NotificationCenter.default.post(name: NSNotification.Name.init(Constant.ReadClientReloadTableViewNotification), object: nil)
         })
     }
 }

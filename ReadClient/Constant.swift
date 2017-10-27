@@ -10,6 +10,12 @@ import Foundation
 import UIKit
 
 struct Constant {
+    static var ReadClientReloadTableViewNotification: String {
+        get {
+            return "ReadClientReloadTableViewNotification"
+        }
+    }
+    
     static var MainCellHeight: CGFloat {
         get {
             return 88.0

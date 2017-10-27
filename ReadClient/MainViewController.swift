@@ -23,7 +23,11 @@ class MainViewController: UIViewController {
         
         // Do any additional setup after loading the view.
     }
-
+    
+    deinit {
+        self.unregisterForNotification()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,9 +44,26 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController {
-    func push() {
+    func registerForNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadTableView), name: NSNotification.Name.init(Constant.ReadClientReloadTableViewNotification), object: nil)
+    }
+    
+    func unregisterForNotification() {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func reloadTableView() {
+        self.tableView.reloadData()
+    }
+}
+
+extension MainViewController {
+    func push(keyCell: MainTableViewCell) {
         let vc = DetailViewController()
-        self.navigationController?.tr_pushViewController(vc, method: TRPresentTransitionMethod.twitter, statusBarStyle: TRStatusBarStyle.default, completion: {
+        
+        let keyCellBackgroundView = keyCell.bgImageView
+        
+        self.navigationController?.tr_pushViewController(vc, method: TRPushTransitionMethod.blixt(keyView: keyCellBackgroundView, to: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: 300)), statusBarStyle: TRStatusBarStyle.default, completion: {
             print("push finish")
         })
     }
@@ -69,9 +90,11 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.push()
+        let cell = tableView.cellForRow(at: indexPath)
+        if cell is MainTableViewCell {
+            self.push(keyCell: cell as! MainTableViewCell)
+        }
     }
-    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if cell is MainTableViewCell {
             let mainCell = cell as! MainTableViewCell
