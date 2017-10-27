@@ -57,7 +57,6 @@ extension DetailViewController: UIScrollViewDelegate {
     }
     
     func hideOrShowHeaderView(isHidden: Bool) {
-        print(self.view.subviews.debugDescription)
         let replicantClass = NSClassFromString("_UIReplicantView") as! NSObject.Type
         
         for replicantView in self.view.subviews {
