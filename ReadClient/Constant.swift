@@ -13,7 +13,7 @@ struct Constant {
     
     static var BaseURLString: String {
         get {
-            return "http://172.22.154.19:8000"
+            return "http://172.24.196.42:8003"
         }
     }
     

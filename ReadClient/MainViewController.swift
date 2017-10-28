@@ -38,13 +38,14 @@ class MainViewController: UIViewController {
     func setupNavigationBar() {
         self.navigationController?.navigationBar.barStyle = .blackTranslucent
         
-        let rightItem = UIBarButtonItem(image: UIImage(named: "usericon64"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(goToUserCenter))
-        rightItem.tintColor = UIColor.white
-        
-        let rightItem1 = UIBarButtonItem(image: UIImage(named: "usericon64"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(goToUserCenter1))
-        rightItem1.tintColor = UIColor.white
-        
-        self.navigationItem.rightBarButtonItems = [rightItem, rightItem1]
+        self.title = "FEED.lite"
+//        let rightItem = UIBarButtonItem(image: UIImage(named: "usericon64"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(goToUserCenter))
+//        rightItem.tintColor = UIColor.white
+//        
+//        let rightItem1 = UIBarButtonItem(image: UIImage(named: "usericon64"), style: UIBarButtonItemStyle.plain, target: self, action: #selector(goToUserCenter1))
+//        rightItem1.tintColor = UIColor.white
+//        
+//        self.navigationItem.rightBarButtonItems = [rightItem, rightItem1]
     }
     
     func setupTableView() {
@@ -76,7 +77,7 @@ class MainViewController: UIViewController {
     }
 
     func requestListData() {
-        Networking.requestNewsList(newsID: 0, count: 10) { (dict: Dictionary<String, AnyObject>) in
+        Networking.requestNewsList(newsID: 0, count: 95) { (dict: Dictionary<String, AnyObject>) in
             
             for key in dict.keys {
                 self.newsList.append(dict[key] as! Dictionary<String, AnyObject>)
@@ -92,9 +93,8 @@ extension MainViewController {
 }
 
 extension MainViewController {
-    func push(keyCell: MainTableViewCell) {
-        let vc = DetailViewController()
-        
+    func push(keyCell: MainTableViewCell,indexNum:Int) {
+        let vc = DetailViewController(tid:indexNum)
         let keyCellBackgroundView = keyCell.bgImageView
         
         self.navigationController?.tr_pushViewController(vc, method: TRPushTransitionMethod.blixt(keyView: keyCellBackgroundView, to: CGRect(x: 0, y: 0, width: Constant.ScreenWidth, height: 300)), statusBarStyle: TRStatusBarStyle.default, completion: {
@@ -126,9 +126,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         if cell is MainTableViewCell {
-            self.push(keyCell: cell as! MainTableViewCell)
+            self.push(keyCell: cell as! MainTableViewCell, indexNum:indexPath.item)
         }
     }
+    
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if cell is MainTableViewCell {
             let mainCell = cell as! MainTableViewCell
